@@ -128,17 +128,7 @@ AUTHENTICATION_BACKENDS = [
 'social_core.backends.twitter.TwitterOAuth',
 'social_core.backends.google.GoogleOAuth2',
 ]
-#Social websites keys
 
-SOCIAL_AUTH_FACEBOOK_KEY= '281221269629577'
-SOCIAL_AUTH_FACEBOOK_SECRET= '1eba26b30f08a2a5723d0bb0ff950f5e'
-SOCIAL_AUTH_FACEBOOK_SCOPE=  ['email']
-
-SOCIAL_AUTH_TWITTER_KEY='ywvPmqsZnlwjJtLl5LYdKm8Gm'
-SOCIAL_AUTH_TWITTER_SECRET = 'fYVVOhGuIJT8ZGmKKNhhjyIApFzNG4OletgZiDUdzfehgFEYKi'
-
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY= '389630136369-i912qg4kqtj07nivjcisllo42at4l7nv.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'tywdqle9F-qu-N7ihMP5vVia'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
