@@ -144,3 +144,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 
 #python manage.py runserver_plus --cert-file cert.crt
+
+from django.urls import reverse_lazy
+
+ABSOLUTE_URL_OVERRIDES = {
+    'auth.user': lambda u: reverse_lazy('user_detail',args=[u.username])
+}
+
+THUMBNAIL_DEBUG = True
