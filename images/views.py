@@ -9,6 +9,8 @@ from django.views.decorators.http import require_POST
 from common.decorators import ajax_required
 from django.http import HttpResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from actions.utils import create_action
+
 # Create your views here.
 
 def image_detail(request, id, slug):
@@ -28,6 +30,7 @@ def image_create(request):
             # assign current user to the item
             new_item.user = request.user
             new_item.save()
+            create_action(request.user, 'bookmarked image', new_item)
             messages.success(request, 'Image added successfully')
             # redirect to new created item detail view
             return redirect(new_item.get_absolute_url())
@@ -49,6 +52,7 @@ def image_like(request):
                 image.user_like.add(request.user)
             else:
                 image.user_like.remove(request.user)
+                create_action(request.user, 'likes', image)
             return JsonResponse({'status' : 'ok'})
         except:
             pass
@@ -75,3 +79,4 @@ def image_list(request):
         return render(request,'images/image/list_ajax.html',{'section':'images','images' : imagens})
     
     return render(request,'images/image/list.html',{'section' : 'images','images': images})
+
