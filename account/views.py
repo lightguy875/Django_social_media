@@ -43,7 +43,7 @@ def dashboard(request):
     if following_ids:
         #If user is following others, retrieve only their actions
         actions = actions.filter(user_id__in=following_ids)
-    actions = actions[:10]
+    actions = actions.select_related('user','user__profile').prefetch_related('target')[:10]
 
     return render(request,'account/dashboard.html',{'section' : 'dashboard ','actions' : actions})
 
@@ -110,9 +110,10 @@ def user_follow(request):
             else:
                 Contact.objects.filter(user_from=request.user,user_to=user).delete()
                 create_action(request.user, 'is following', user)
-            r
+            
             return JsonResponse({ 'status':'ok' })
         except User.DoesNotExist:
             return JsonResponse({'status':'error'})
         return JsonResponse({'status':'error'})
-    
+
+
