@@ -153,3 +153,8 @@ ABSOLUTE_URL_OVERRIDES = {
 }
 
 THUMBNAIL_DEBUG = True
+
+#Redis configuration for image ranking
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+REDIS_DB = 0
