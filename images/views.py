@@ -59,12 +59,12 @@ def image_like(request):
     if image_id and action:
         try:
             image = Image.objects.get(id=image_id)
-            if aciton == 'like':
-                image.user_like.add(request.user)
-            else:
-                image.user_like.remove(request.user)
+            if action == 'like':
+                image.users_like.add(request.user)
                 create_action(request.user, 'likes', image)
-            return JsonResponse({'status' : 'ok'})
+            else:
+                image.users_like.remove(request.user)
+            return JsonResponse({'status':'ok'})
         except:
             pass
     return JsonResponse({'status':'error'})
@@ -87,7 +87,7 @@ def image_list(request):
         #If page is out of range deliver last page of results
         images = paginator.page(paginator.num_pages)
     if request.is_ajax():
-        return render(request,'images/image/list_ajax.html',{'section':'images','images' : imagens})
+        return render(request,'images/image/list_ajax.html',{'section':'images','images' : images})
     
     return render(request,'images/image/list.html',{'section' : 'images','images': images})
 
